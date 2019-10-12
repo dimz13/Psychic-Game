@@ -1,79 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="assets/js/game.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Guess Game</title>
 </head>
+
 <body>
-    <h1>The Psychic Game</h1>
-    <p>Guess what letter I'm thinking of</p>
-    <p id="wins">Wins</p>
-    <p id="losses">Losses</p>
-    <p id="left">Guesses Left</p>
-    <p id="guessChoices">Your guesses so far</p>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" style="text-align:center">The Psychic Game</h1>
+                <p class="lead" style="text-align:center">Guess what letter I'm thinking of</p>
+            </div>
+        </div>
+        <button type="button" id="wins" class="btn btn-primary badge-success">
+            Wins <span class="badge badge-light">0</span>
+        </button>
+        <br>
+        <br>
+        <button type="button" id="losses" class="btn btn-primary">
+            Losses <span class="badge badge-light">0</span>
+        </button>
+        <br>
+        <br>
+        <button type="button" id="left" class="btn btn-primary badge-info">
+            Guesses Left <span class="badge badge-light">0</span>
+        </button>
+        <br>
+        <br>
+        <button type="button" id="guessChoices" class="btn btn-primary badge-warning">
+            Guesses So far <span class="badge badge-light"></span>
+        </button>
+    </div>
+    <script>
+        game();
+    </script>
 </body>
-<script>
-// var userGuessDom = document.getElementById("userGuessList")
-var computerGuess;
-var userGuess;
-var winsDom = document.getElementById("wins")
-var lossesDom = document.getElementById("losses")
-var leftDom = document.getElementById("left")
-var guessChoicesDom = document.getElementById("guessChoices")
-
-var computerList = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-var wins =0;
-var losses = 0;
-var left =9;
-var guessChoices = []
-
-winsDom.textContent = "Wins: " + wins;
-lossesDom.textContent = "Losses: " + losses;
-leftDom.textContent = "Guesses Left: " + left;
-guessChoicesDom.textContent = " You guesses so far: " + "";
-
-document.onkeyup = function(event){
-    var computerGuess = computerList[Math.floor(Math.random() * computerList.length)];
-    // userGuessDom.textContent = " You guesses so far: " + userGuessList;
-    
- 
-    // console.log("Array: ",guesses[0])
-    // userGuess.textContent = event.key;
-    userGuess = event.key.toLowerCase()
-    console.log(userGuess,computerGuess)
-//   for (var x = 15; x<=0; x--){
-    // document.getElementById("user-history").textContent = userHistory;
-//   }
-    if (userGuess != computerGuess){
-        left--;
-         console.log("Your choice did not match ",left)
-         leftDom.textContent = "Guesses Left: " + left;
-         guessChoices[guessChoices.length] = userGuess;
-         console.log(guessChoices)
-         guessChoicesDom.textContent = " You guesses so far: " + guessChoices.join(", ") + "";
-          if (left===0){
-              left = 9;
-              leftDom.textContent = "Guesses Left: " + left;
-              losses++;
-              lossesDom.textContent = "Losses: " + losses;
-              guessChoices =[];   
-          }
-        
-    }else if(userGuess === computerGuess){
-        wins++
-        console.log("You win ", wins)
-        winsDom.textContent = "Wins: " + wins;
-        left = 9;
-              leftDom.textContent = "Guesses Left: " + left;
-              lossesDom.textContent = "Losses: " + losses;
-              guessChoices =[]; 
-    }
-    }
-     
-
-
-</script>
 </html>
